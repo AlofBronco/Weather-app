@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Weather</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+  </head>
+  <body>
+    <div id="loading">
+      Loading<span id="dots"><span>.</span><span>.</span><span>.</span></span>
+    </div>
+    <div id="wrapper" style="display: none">
+      <header>
+        <div id="search">
+          <input id="search-city" type="search" name="search-city" placeholder="Search City" />
+          <button id="search-svg" type="submit" name="search-button">
+            <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
+              <path
+                fill="#666666"
+                d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+
+        <div id="info">
+          <h1 id="time"><span id="hours"></span><span id="blink">:</span><span id="minutes"></span></h1>
+          <h2 id="city-country"></h2>
+        </div>
+      </header>
+
+      <main>
+        <div id="weather">
+          <div id="current-weather">
+            <img id="weather-icon" src="" alt="" />
+            <div id="weather-info">
+              <h1 id="weather-name"></h1>
+              <h2 id="temp"></h2>
+              <h3 id="feels-like"></h3>
+              <div id="wind">
+                <h2 id="wind-speed"></h2>
+                <svg
+                  version="1.1"
+                  id="wind-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  x="0"
+                  y="0"
+                  viewBox="0 0 128 128"
+                  style="enable-background: new 0 0 128 128"
+                  xml:space="preserve"
+                >
+                  <style>
+                    .st0,
+                    .st1 {
+                      display: none;
+                      fill: #191919;
+                    }
+                    .st1,
+                    .st3 {
+                      fill-rule: evenodd;
+                      clip-rule: evenodd;
+                    }
+                    .st3,
+                    .st4 {
+                      display: inline;
+                      fill: #191919;
+                    }
+                  </style>
+                  <g id="row1">
+                    <path id="nav:2_3_" d="M64 1 17.9 127 64 99.8l46.1 27.2L64 1zm0 20.4 32.6 89.2L64 91.3V21.4z" style="fill: #191919" />
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div id="forecast">
+            <div id="monday">
+              <div class="weekday"></div>
+              <div class="forecast-condition"></div>
+              <div class="forecast-temp"></div>
+            </div>
+            <div id="tuesday">
+              <div class="weekday"></div>
+              <div class="forecast-condition"></div>
+              <div class="forecast-temp"></div>
+            </div>
+            <div id="wednesday">
+              <div class="weekday"></div>
+              <div class="forecast-condition"></div>
+              <div class="forecast-temp"></div>
+            </div>
+            <div id="thursday">
+              <div class="weekday"></div>
+              <div class="forecast-condition"></div>
+              <div class="forecast-temp"></div>
+            </div>
+            <div id="friday">
+              <div class="weekday"></div>
+              <div class="forecast-condition"></div>
+              <div class="forecast-temp"></div>
+            </div>
+            <div id="saturday">
+              <div class="weekday"></div>
+              <div class="forecast-condition"></div>
+              <div class="forecast-temp"></div>
+            </div>
+            <div id="sunday">
+              <div class="weekday"></div>
+              <div class="forecast-condition"></div>
+              <div class="forecast-temp"></div>
+            </div>
+          </div>
+        </div>
+        <aside>
+          <hr />
+        </aside>
+        <div id="error">
+          <span id="error-message"></span>
+          <button id="error-button">OK</button>
+        </div>
+      </main>
+    </div>
+    <script src="script.js" defer></script>
+  </body>
+</html>
