@@ -1,4 +1,9 @@
+let lastLat, lastLon;
+
 async function fetchData(lat, lon) {
+  lastLat = lat;
+  lastLon = lon;
+
   const loading = document.getElementById('loading');
   const wrapper = document.getElementById('wrapper');
   try {
@@ -44,11 +49,13 @@ async function fetchData(lat, lon) {
       const weekday = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
       const day = weekday[date.getDay()];
 
-      const weekBlock = document.getElementById(day);
+      const weekBlock = document.getElementById(`forecast-${i}`);
+      const forecastIcon = weekBlock.querySelector('.forecast-icon');
       const weekDay = weekBlock.querySelector('.weekday');
       const condition = weekBlock.querySelector('.forecast-condition');
       const temp = weekBlock.querySelector('.forecast-temp');
 
+      forecastIcon.src = `https://openweathermap.org/img/wn/${entry.weather[0].icon}@4x.png`;
       weekDay.textContent = capitalizeWords(day);
       condition.textContent = capitalizeWords(entry.weather[0].description);
       temp.textContent = `${Math.round(entry.main.temp)}°C`;
@@ -58,7 +65,7 @@ async function fetchData(lat, lon) {
     displayError('Failed to fetch weather data.');
   } finally {
     loading.style.display = 'none';
-    wrapper.style.display = 'block';
+    wrapper.style.display = 'flex';
   }
 }
 
@@ -137,6 +144,25 @@ async function findLocation() {
     displayError('Failed to find the location.');
   }
 }
+
+// UPDATING THE PAGE
+let awayStartTime;
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') {
+    awayStartTime = new Date().getTime();
+  } else if (document.visibilityState === 'visible') {
+    const returnTime = new Date().getTime();
+    const timeAway = (returnTime - awayStartTime) / 1000;
+
+    if (timeAway >= 60) {
+      if (lastLat !== undefined && lastLon !== undefined) {
+        fetchData(lastLat, lastLon);
+      } else {
+        console.warn('No coordinates available for fetching data.');
+      }
+    }
+  }
+});
 
 // ERROR HANDLING
 const errorBlock = document.getElementById('error');
