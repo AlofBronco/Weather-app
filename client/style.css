@@ -24,7 +24,7 @@ body {
   flex-direction: column;
   height: 100%;
   position: absolute;
-  background-color: rgb(255, 255, 255);
+  background-color: white;
   z-index: 10;
   text-align: center;
 }
@@ -38,18 +38,16 @@ body {
 #error-button {
   border: none;
   background-color: rgba(188, 179, 179, 0.3);
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 500;
   padding: 10px 15px;
   border-radius: 30px;
 }
-
 #error-button:hover {
-  background-color: rgba(188, 179, 179, 0.4);
-}
-
-#error-button:active {
   background-color: rgba(188, 179, 179, 0.5);
+}
+#error-button:active {
+  background-color: rgba(188, 179, 179, 0.4);
 }
 
 #loading {
@@ -112,7 +110,6 @@ header {
   border: none;
   border-radius: 30px;
 }
-
 #search-city:focus {
   outline: 1px solid rgb(161, 153, 153);
 }
@@ -133,14 +130,6 @@ header {
   animation: blink 1s ease-in-out infinite;
 }
 
-@keyframes blink {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
 main {
   display: flex;
   align-items: stretch;
@@ -159,6 +148,7 @@ aside {
 aside {
   flex-direction: column;
   flex: 30%;
+  height: 560px;
 }
 
 #weather {
@@ -214,10 +204,6 @@ aside {
 #wind-icon {
   width: 25px;
   height: 25px;
-}
-
-aside {
-  height: 560px;
 }
 
 #forecast {

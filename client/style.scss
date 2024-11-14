@@ -1,11 +1,43 @@
 @use 'sass:math';
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
+// Define color variables
+$light-gray: rgba(188, 179, 179, 0.4);
+$dark-gray: rgba(188, 179, 179, 0.3);
+$dark-hover: rgba(188, 179, 179, 0.5);
+$font-family: 'JetBrains Mono', monospace;
+
+// Define font sizes
+$font-size-large: 3rem;
+$font-size-medium: 2rem;
+$font-size-small: 1.8rem;
+$font-size-xsmall: 1.5rem;
+$font-size-xxsmall: 1.1rem;
+
+// Mixin for button styling
+@mixin button-style($background-color, $hover-background, $active-background) {
+  border: none;
+  background-color: $background-color;
+  font-size: $font-size-medium;
+  font-weight: 500;
+  padding: 10px 15px;
+  border-radius: 30px;
+
+  &:hover {
+    background-color: $hover-background;
+  }
+
+  &:active {
+    background-color: $active-background;
+  }
+}
+
+// Global styles
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: $font-family;
 }
 
 html,
@@ -19,6 +51,7 @@ body {
   flex-direction: column;
 }
 
+// Error styles
 #error {
   display: none;
   align-items: center;
@@ -26,36 +59,24 @@ body {
   flex-direction: column;
   height: 100%;
   position: absolute;
-  background-color: rgb(255, 255, 255);
+  background-color: white;
   z-index: 10;
   text-align: center;
 }
 
 #error-message {
-  font-size: 3rem;
+  font-size: $font-size-large;
   font-weight: 600;
   margin-bottom: 20px;
 }
 
 #error-button {
-  border: none;
-  background-color: rgba(188, 179, 179, 0.3);
-  font-size: 1.5rem;
-  font-weight: 500;
-  padding: 10px 15px;
-  border-radius: 30px;
+  @include button-style($dark-gray, $dark-hover, $light-gray);
 }
 
-#error-button:hover {
-  background-color: rgba(188, 179, 179, 0.4);
-}
-
-#error-button:active {
-  background-color: rgba(188, 179, 179, 0.5);
-}
-
+// Loading styles
 #loading {
-  font-size: 3rem;
+  font-size: $font-size-large;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -83,11 +104,13 @@ body {
   100% {
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
 }
 
+// Main wrapper and layout
 #wrapper {
   height: 100%;
   padding: 20px;
@@ -111,14 +134,14 @@ header {
 
 #search-city {
   padding: 10px 20px;
-  font-size: 1.1rem;
-  background-color: rgba(188, 179, 179, 0.3);
+  font-size: $font-size-xxsmall;
+  background-color: $dark-gray;
   border: none;
   border-radius: 30px;
-}
 
-#search-city:focus {
-  outline: 1px solid rgba(161, 153, 153, 1);
+  &:focus {
+    outline: 1px solid rgba(161, 153, 153, 1);
+  }
 }
 
 #search-svg {
@@ -137,16 +160,7 @@ header {
   animation: blink 1s ease-in-out infinite;
 }
 
-@keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
+// Main section layout
 main {
   display: flex;
   align-items: stretch;
@@ -165,6 +179,7 @@ aside {
 aside {
   flex-direction: column;
   flex: 30%;
+  height: 560px;
 }
 
 #weather {
@@ -174,7 +189,7 @@ aside {
 }
 
 #current-weather {
-  background-color: rgba(188, 179, 179, 0.4);
+  background-color: $light-gray;
   border-radius: 30px;
   display: flex;
   align-items: center;
@@ -195,16 +210,16 @@ aside {
 }
 
 #weather-name {
-  font-size: 3rem;
+  font-size: $font-size-large;
 }
 
 #temp,
 #wind-speed {
-  font-size: 2rem;
+  font-size: $font-size-medium;
 }
 
 #feels-like {
-  font-size: 1.8rem;
+  font-size: $font-size-small;
 }
 
 #wind {
@@ -222,10 +237,7 @@ aside {
   height: 25px;
 }
 
-aside {
-  height: 560px;
-}
-
+// Forecast section
 #forecast {
   cursor: default;
   width: 75%;
@@ -243,7 +255,7 @@ aside {
   font-size: 1.2rem;
   width: 100%;
   padding: 5px;
-  background-color: rgba(188, 179, 179, 0.4);
+  background-color: $light-gray;
   border-radius: 30px;
   margin-bottom: 10px;
 }
@@ -258,6 +270,7 @@ aside {
   margin-right: 10px;
 }
 
+// Media queries
 @media screen and (max-width: 1225px) {
   #wrapper {
     padding: 10px;
