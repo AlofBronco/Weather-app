@@ -10,10 +10,6 @@ async function fetchData(lat, lon) {
     const response = await fetch(`/api?lat=${lat}&lon=${lon}`);
     const { weather, reverseLocation, forecast } = await response.json();
 
-    console.log(weather);
-    console.log(reverseLocation);
-    console.log(forecast);
-
     clearInterval(timeInterval);
     const initialTime = new Date(weather.dt * 1000);
     const timezoneOffset = weather.timezone || 0;

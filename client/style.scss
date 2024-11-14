@@ -8,8 +8,15 @@
   font-family: 'JetBrains Mono', monospace;
 }
 
+html,
 body {
-  height: 100vh;
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
 }
 
 #error {
@@ -18,6 +25,10 @@ body {
   justify-content: center;
   flex-direction: column;
   height: 100%;
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  z-index: 10;
+  text-align: center;
 }
 
 #error-message {
@@ -82,10 +93,11 @@ body {
   padding: 20px;
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 header {
-  height: 100px;
+  height: fit-content;
   display: flex;
   align-items: start;
   justify-content: space-between;
@@ -137,17 +149,28 @@ header {
 
 main {
   display: flex;
-  align-items: center;
-  height: 100%;
+  align-items: stretch;
+  max-height: 700px;
+  margin: auto 0;
+  flex: 1;
 }
 
-#weather {
-  width: 60%;
-  height: 80%;
+#weather,
+aside {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+aside {
+  flex-direction: column;
+  flex: 30%;
+}
+
+#weather {
+  height: 560px;
   cursor: default;
+  flex: 50%;
 }
 
 #current-weather {
@@ -158,7 +181,7 @@ main {
   justify-content: center;
   flex-direction: column;
   height: 100%;
-  width: 80%;
+  width: 75%;
 }
 
 #weather-icon {
@@ -200,16 +223,17 @@ main {
 }
 
 aside {
-  width: 30%;
-  height: 80%;
+  height: 560px;
 }
 
 #forecast {
   cursor: default;
+  width: 75%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
+  justify-content: center;
 }
 
 #forecast > div {
@@ -224,8 +248,57 @@ aside {
   margin-bottom: 10px;
 }
 
+#forecast-32 {
+  margin-bottom: 0 !important;
+}
+
 .forecast-icon {
-  width: 93px;
-  height: 93px;
+  width: 94px;
+  height: 94px;
   margin-right: 10px;
+}
+
+@media screen and (max-width: 1225px) {
+  #wrapper {
+    padding: 10px;
+  }
+
+  #forecast > div {
+    font-size: 1rem;
+  }
+
+  #weather-icon {
+    width: 300px;
+    height: 300px;
+    margin-top: -70px;
+  }
+
+  #weather-name {
+    font-size: 2.5rem;
+  }
+
+  #temp,
+  #wind-speed {
+    font-size: 1.5rem;
+  }
+
+  #feels-like {
+    font-size: 1.2rem;
+  }
+
+  #current-weather,
+  #forecast {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #current-weather,
+  #forecast {
+    width: 90%;
+  }
+
+  #weather-name {
+    margin: 0 15px;
+  }
 }
